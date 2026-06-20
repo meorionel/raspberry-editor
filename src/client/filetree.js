@@ -84,9 +84,13 @@ function renderTreeHTML(nodes, basePath) {
   return html
 }
 
+let rendering = false
+
 export function renderFileTree() {
+  if (rendering) return
+  rendering = true
   const container = document.getElementById('file-tree')
-  if (!container) return
+  if (!container) { rendering = false; return }
 
   const createInput = (handler) => {
     const li = document.createElement('li')
@@ -115,6 +119,7 @@ export function renderFileTree() {
       ul.appendChild(createInput(state.pendingNewFile ? setupNewFileInput : setupNewDirInput))
       container.appendChild(ul)
     }
+    rendering = false
     return
   }
 
@@ -181,6 +186,7 @@ export function renderFileTree() {
   if (state.renameTarget) {
     handleRenameInput(container)
   }
+  rendering = false
 }
 
 function handleRenameInput(container) {
