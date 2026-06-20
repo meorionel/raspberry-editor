@@ -182,9 +182,18 @@ export function renderFileTree() {
       if (treeEl) {
         if (state.pendingNewFile) {
           const firstFile = treeEl.querySelector('.tree-file')
-          firstFile ? treeEl.insertBefore(input, firstFile) : treeEl.appendChild(input)
+          if (firstFile && firstFile.parentNode === treeEl) {
+            treeEl.insertBefore(input, firstFile)
+          } else {
+            treeEl.appendChild(input)
+          }
         } else {
-          treeEl.insertBefore(input, treeEl.firstChild)
+          const ref = treeEl.firstChild
+          if (ref && ref.parentNode === treeEl) {
+            treeEl.insertBefore(input, ref)
+          } else {
+            treeEl.appendChild(input)
+          }
         }
       }
     }
