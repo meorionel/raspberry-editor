@@ -35,6 +35,10 @@ window.monacoReady.then(() => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'n') { e.preventDefault(); newFileInline() }
   })
 
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault()
+  })
+
   const btnTheme = document.getElementById('btn-theme')
   const btnFont = document.getElementById('btn-font')
   if (btnTheme) btnTheme.onclick = showThemePicker

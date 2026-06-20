@@ -141,7 +141,7 @@ export function renderFileTree() {
   })
 
   container.onclick = function (e) {
-    if (!e.target.closest('.tree-file') && !e.target.closest('.tree-folder-label')) {
+    if (!e.target.closest('.tree-file') && !e.target.closest('.tree-folder-label') && !e.target.closest('.tree-new-file')) {
       state.selectedTreePath = null
       renderFileTree()
     }
@@ -168,7 +168,14 @@ export function renderFileTree() {
       const label = container.querySelector(`.tree-folder-label[data-path="${CSS.escape(state.pendingBasePath)}"]`)
       if (label) {
         const children = label.parentElement.querySelector('.tree-children')
-        if (children) children.insertBefore(input, children.firstChild)
+        if (children) {
+          const ref = children.firstChild
+          if (ref && ref.parentNode === children) {
+            children.insertBefore(input, ref)
+          } else {
+            children.appendChild(input)
+          }
+        }
       }
     } else {
       const treeEl = container.querySelector('.tree')
