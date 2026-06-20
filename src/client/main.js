@@ -6,6 +6,7 @@ import { showFontPicker } from './fonts'
 import { showLanguagePicker } from './api'
 import { renderTabs, showWelcome, saveFile, closeTab } from './tabs'
 import { renderFileTree, refreshFileTree, newFileInline, newDirInline } from './filetree'
+import { updateEditorStats } from './api'
 import { loadIconTheme } from './icons'
 
 window.monacoReady.then(() => {
@@ -24,6 +25,7 @@ window.monacoReady.then(() => {
       renderTabs()
       renderFileTree()
     }
+    updateEditorStats()
   })
 
   const langEl = document.getElementById('status-lang')
@@ -85,4 +87,5 @@ window.monacoReady.then(() => {
   showWelcome(true)
   refreshFileTree()
   loadIconTheme()
+  updateEditorStats()
 })

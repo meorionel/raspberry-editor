@@ -1,5 +1,5 @@
 import { state } from './state'
-import { api, langFromKey, updateStatusLang } from './api'
+import { api, langFromKey, updateStatusLang, updateEditorStats } from './api'
 import { showAlert, showConfirm } from './dialogs'
 import { iconPath } from './icons'
 import { showWelcome } from './tabs'
@@ -347,6 +347,7 @@ export async function openFileByKey(key) {
     state.activeKey = key
     showWelcome(false)
     updateStatusLang(key)
+    updateEditorStats()
     import('./tabs.js').then(({ renderTabs }) => renderTabs())
     renderFileTree()
     state.editor.focus()
@@ -438,6 +439,7 @@ function setupNewFileInput(input) {
     state.activeKey = fullKey
     showWelcome(false)
     updateStatusLang(fullKey)
+    updateEditorStats()
     import('./tabs.js').then(({ renderTabs }) => renderTabs())
     state.editor.focus()
     try {

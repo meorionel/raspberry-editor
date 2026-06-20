@@ -28,6 +28,21 @@ export function updateStatus(msg) {
   }, 2000)
 }
 
+export function updateEditorStats() {
+  const charsEl = document.getElementById('status-words')
+  const sizeEl = document.getElementById('status-size')
+  if (!state.editor || !charsEl || !sizeEl) return
+  const content = state.editor.getValue()
+  const chars = content.length
+  const bytes = new TextEncoder().encode(content).length
+  let size
+  if (bytes < 1024) size = bytes + ' B'
+  else if (bytes < 1024 * 1024) size = (bytes / 1024).toFixed(1) + ' KB'
+  else size = (bytes / (1024 * 1024)).toFixed(1) + ' MB'
+  charsEl.textContent = chars + ' chars'
+  sizeEl.textContent = size
+}
+
 export function showLanguagePicker() {
   const allLangs = monaco.languages.getLanguages().map(l => l.id).sort()
   import('./dialogs.js').then(({ showList }) => {

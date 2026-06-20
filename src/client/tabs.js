@@ -1,6 +1,6 @@
 import { state } from './state'
 import { showConfirm } from './dialogs'
-import { updateStatusLang } from './api'
+import { updateStatusLang, updateEditorStats } from './api'
 import { renderFileTree, refreshFileTree } from './filetree'
 import { newFileInline } from './filetree'
 
@@ -52,6 +52,7 @@ export function switchTab(key) {
   state.editor.setModel(model)
   state.activeKey = key
   updateStatusLang(key)
+  updateEditorStats()
   renderTabs()
   renderFileTree()
 }
@@ -96,6 +97,7 @@ export async function saveFile() {
     refreshFileTree()
     const { updateStatus } = await import('./api.js')
     updateStatus(state.activeKey + ' saved')
+    updateEditorStats()
   } catch (e) {
     showConfirm('Save failed: ' + e.message)
   }

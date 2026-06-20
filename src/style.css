@@ -72,7 +72,8 @@ body.dragging, body.dragging * { cursor: col-resize !important; user-select: non
 .welcome-logo { width: 128px; height: 128px; }
 #welcome.hidden { display: none; }
 
-#statusbar { display: flex; justify-content: space-between; padding: 4px 12px; background: #ebbcba; color: #191724; font-size: 12px; }
+#statusbar { display: flex; justify-content: space-between; padding: 4px 12px; background: #ebbcba; color: #191724; font-size: 11px; }
+.status-box { display: flex; gap: 16px; }
 #status-lang { cursor: pointer; }
 #status-lang:hover { text-decoration: underline; }
 
