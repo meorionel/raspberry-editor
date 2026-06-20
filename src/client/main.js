@@ -51,6 +51,34 @@ window.monacoReady.then(() => {
   if (btnNewDir) btnNewDir.onclick = () => newDirInline()
   if (btnRefresh) btnRefresh.onclick = refreshFileTree
 
+  const sidebarResize = document.getElementById('sidebar-resize')
+  const sidebar = document.getElementById('sidebar')
+  if (sidebarResize && sidebar) {
+    const savedWidth = localStorage.getItem('sidebar-width')
+    if (savedWidth) sidebar.style.width = savedWidth
+    let startX, startWidth
+    sidebarResize.addEventListener('mousedown', (e) => {
+      e.preventDefault()
+      startX = e.clientX
+      startWidth = sidebar.offsetWidth
+      document.body.classList.add('dragging')
+      const onMouseMove = (e) => {
+        const dx = e.clientX - startX
+        const newWidth = Math.min(Math.max(startWidth + dx, 120), window.innerWidth * 0.5)
+        sidebar.style.width = newWidth + 'px'
+      }
+      const onMouseUp = () => {
+        document.body.classList.remove('dragging')
+        document.removeEventListener('mousemove', onMouseMove)
+        document.removeEventListener('mouseup', onMouseUp)
+        localStorage.setItem('sidebar-width', sidebar.style.width)
+        state.editor.layout()
+      }
+      document.addEventListener('mousemove', onMouseMove)
+      document.addEventListener('mouseup', onMouseUp)
+    })
+  }
+
   applyFont(state.currentFont)
   applyTheme(state.currentTheme)
   document.getElementById('loading-screen').classList.add('hidden')

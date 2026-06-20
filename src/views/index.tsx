@@ -29,6 +29,7 @@ export function IndexPage() {
             </div>
             <div id="file-tree"></div>
           </div>
+          <div id="sidebar-resize"></div>
           <div id="editor-area">
             <div id="tabbar"></div>
             <div id="editor-container"></div>
