@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "raspberry-editor",
+  "main": "./src/index.tsx",
+  "compatibility_date": "2025-08-03",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./public"
+  },
+  "r2_buckets": [
+    {
+      "binding": "FILE_BUCKET",
+      "bucket_name": "editor-files",
+      "preview_bucket_name": "editor-files"
+    }
+  ]
+}

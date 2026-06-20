@@ -1,0 +1,17 @@
+export const state = {
+  editor: null,
+  models: new Map(),
+  activeKey: null,
+  dirtyKeys: new Set(),
+  pendingNewFile: false,
+  pendingNewDir: false,
+  pendingBasePath: '',
+  renameTarget: null,
+  fileTreeFiles: null,
+  treeExpanded: {},
+  selectedTreePath: null,
+  iconTheme: null,
+  loadedThemes: {},
+  currentTheme: localStorage.getItem('editor-theme') || 'rose-pine',
+  currentFont: localStorage.getItem('editor-font') || 'system',
+}
