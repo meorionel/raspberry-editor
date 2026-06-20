@@ -14,7 +14,7 @@ export const renderer = jsxRenderer(({ children }) => {
         <Link href="/src/style.css" rel="stylesheet" />
         <Link href="/fonts/maple-mono.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs/loader.js"></script>
-        <script>{`require.config({paths:{vs:'https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs'}});window.monacoReady=new Promise(r=>require(['vs/editor/editor.main'],r))`}</script>
+        <script dangerouslySetInnerHTML={{ __html: `require.config({paths:{vs:'https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs'}});window.monacoReady=new Promise(r=>require(['vs/editor/editor.main'],r))` }}></script>
       </head>
       <body>{children}</body>
     </html>
