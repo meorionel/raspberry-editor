@@ -68,7 +68,7 @@ body.font-maple .btn { font-family: 'Maple Mono CN', monospace; }
 .welcome-logo { width: 128px; height: 128px; }
 #welcome.hidden { display: none; }
 
-#statusbar { display: flex; justify-content: space-between; padding: 4px 12px; background: var(--accent); color: var(--bg); font-size: 12px; }
+#statusbar { display: flex; justify-content: space-between; padding: 4px 12px; background: #ebbcba; color: #191724; font-size: 12px; }
 #status-lang { cursor: pointer; }
 #status-lang:hover { text-decoration: underline; }
 
