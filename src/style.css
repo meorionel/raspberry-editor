@@ -102,3 +102,44 @@ body.dragging, body.dragging * { cursor: col-resize !important; user-select: non
 .context-menu-item svg { flex-shrink: 0; }
 .dropdown-item { padding: 4px; cursor: pointer; border-radius: 4px; display: flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 12px; }
 .dropdown-item:hover { background: var(--surface-hover); }
+
+#login-screen {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--bg, #191724);
+  background-image: radial-gradient(ellipse at 50% 80%, rgba(235,187,186,0.08) 0%, transparent 60%);
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  padding-bottom: 22vh;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+#login-screen.fade-out { opacity: 0; transform: scale(1.02); pointer-events: none; }
+
+#login-user { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 24px; }
+.login-avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+.login-username { font-size: 22px; font-weight: 600; color: var(--text, #e0def4); letter-spacing: 0.3px; }
+
+#login-form { width: 260px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.login-password-wrap { position: relative; width: 100%; }
+.login-input {
+  width: 100%; padding: 10px 42px 10px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--text, #e0def4); border-radius: 22px;
+  font-size: 14px; outline: none;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.2s, background 0.2s;
+}
+.login-input::placeholder { color: var(--text-dim, #6e6e6e); opacity: 0.6; }
+.login-input:focus { border-color: var(--accent, #ebbcba); background: rgba(255,255,255,0.12); }
+.login-submit {
+  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--accent, #ebbcba); color: var(--bg, #191724);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.2s;
+}
+.login-submit:disabled { opacity: 0.3; cursor: not-allowed; }
+.login-submit:not(:disabled):hover { opacity: 0.85; }
+
+.login-error { color: #eb6f92; font-size: 12px; margin: 0; text-align: center; }
+.hidden { display: none !important; }

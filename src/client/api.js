@@ -55,11 +55,36 @@ export function showLanguagePicker() {
   })
 }
 
+export function checkAuth() {
+  const token = localStorage.getItem('auth-token')
+  if (!token) {
+    window.location.href = '/login'
+    return false
+  }
+  return true
+}
+
 export async function api(path, options = {}) {
+  const token = localStorage.getItem('auth-token')
+  if (!token) {
+    window.location.href = '/login'
+    throw new Error('Not authenticated')
+  }
+
   const res = await fetch('/api/files' + path, {
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
     ...options,
   })
+
+  if (res.status === 401) {
+    localStorage.removeItem('auth-token')
+    window.location.href = '/login'
+    throw new Error('Token expired')
+  }
+
   if (!res.ok) throw new Error(await res.text())
   return res.json()
 }

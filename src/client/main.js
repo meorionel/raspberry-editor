@@ -3,11 +3,15 @@ import { applyTheme } from './themes'
 import { applyFont } from './fonts'
 import { showThemePicker } from './themes'
 import { showFontPicker } from './fonts'
-import { showLanguagePicker } from './api'
+import { showLanguagePicker, checkAuth } from './api'
 import { renderTabs, showWelcome, saveFile, closeTab } from './tabs'
 import { renderFileTree, refreshFileTree, newFileInline, newDirInline } from './filetree'
 import { updateEditorStats } from './api'
 import { loadIconTheme } from './icons'
+
+if (!checkAuth()) {
+  throw new Error('Not authenticated')
+}
 
 window.monacoReady.then(() => {
   state.editor = monaco.editor.create(document.getElementById('editor-container'), {
