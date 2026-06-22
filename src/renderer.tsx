@@ -12,7 +12,7 @@ export const renderer = jsxRenderer(({ children }) => {
         <ViteClient />
         <style>{`:root{--bg:#191724;--border:#26233a;--accent:#ebbcba}`}</style>
         <Link href="/src/style.css" rel="stylesheet" />
-        <Link href="/fonts/maple-mono.css" rel="stylesheet" />
+        <link href="/fonts/maple-mono.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs/loader.js"></script>
         <script dangerouslySetInnerHTML={{ __html: `require.config({paths:{vs:'https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs'}});window.monacoReady=new Promise(r=>require(['vs/editor/editor.main'],r))` }}></script>
       </head>
