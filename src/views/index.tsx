@@ -1,3 +1,5 @@
+import { Script } from 'vite-ssr-components/hono'
+
 export function IndexPage() {
   return (
     <>
@@ -53,7 +55,7 @@ export function IndexPage() {
           </div>
         </div>
       </div>
-      <script type="module" src="/src/client/main.js"></script>
+      <Script src="/src/client/main.js" />
     </>
   )
 }

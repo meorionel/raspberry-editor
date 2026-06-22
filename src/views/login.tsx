@@ -1,3 +1,5 @@
+import { Script } from 'vite-ssr-components/hono'
+
 export function LoginPage() {
   return (
     <>
@@ -25,7 +27,7 @@ export function LoginPage() {
           <p id="login-error" class="login-error hidden"></p>
         </form>
       </div>
-      <script type="module" src="/src/client/login.js"></script>
+      <Script src="/src/client/login.js" />
     </>
   )
 }
